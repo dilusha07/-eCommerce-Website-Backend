@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import productRouter from "./routes/productRoutes.js";
 
 const app = express();
 
@@ -21,6 +22,8 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+app.use("/api/products", productRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is ready...");
