@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce-backend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "The backend for mini eCommerce web app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dilusha",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
