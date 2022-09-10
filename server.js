@@ -1,8 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 
-mongoose.connect;
-
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -23,6 +21,12 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
 app.get("/", (req, res) => {
   res.send("Server is ready...");
+});
+
+//Catch errors
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
 });
