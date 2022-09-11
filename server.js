@@ -1,11 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
-import productRouter from "./routes/productRoutes.js";
+import bodyParser from "body-parser";
+
+import productRoute from "./routes/productRoute.js";
 
 const app = express();
 
 const port = process.env.PORT || 5000;
 
+//Connect MongoDB cloud database
 const databaseURL =
   "mongodb+srv://dilusha07:d1234s123@cluster0.65hdtzy.mongodb.net/ecommerce?retryWrites=true&w=majority";
 mongoose
@@ -23,7 +26,8 @@ mongoose
     console.log(err);
   });
 
-app.use("/api/products", productRouter);
+app.use(bodyParser.json());
+app.use("/api/products", productRoute);
 
 app.get("/", (req, res) => {
   res.send("Server is ready...");
