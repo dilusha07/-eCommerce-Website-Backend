@@ -47,4 +47,15 @@ router.put("/:id", async (req, res) => {
   return res.status(500).send({ message: " Error in Updating Product." });
 });
 
+//Delete Product
+router.delete("/:id", async (req, res) => {
+  const deletedProduct = await Product.findById(req.params.id);
+  if (deletedProduct) {
+    await deletedProduct.remove();
+    res.send({ message: "Product Deleted" });
+  } else {
+    res.send("Error in Deletion.");
+  }
+});
+
 export default productRoute;
