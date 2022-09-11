@@ -1,5 +1,6 @@
 import express from "express";
 import Product from "../models/productModel";
+import { isAuth, isAdmin } from "../util";
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //Create new Product
-router.post("/", async (req, res) => {
+router.post("/", isAuth, isAdmin, async (req, res) => {
   const product = new Product({
     sku: req.body.sku,
     image: req.body.image,
@@ -38,7 +39,7 @@ router.post("/", async (req, res) => {
 });
 
 //Edit Product
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAuth, isAdmin, async (req, res) => {
   const productId = req.params.id;
   const product = await Product.findById(productId);
   if (product) {
@@ -58,7 +59,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //Delete Product
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isAuth, isAdmin, async (req, res) => {
   const deletedProduct = await Product.findById(req.params.id);
   if (deletedProduct) {
     await deletedProduct.remove();
